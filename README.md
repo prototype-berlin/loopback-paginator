@@ -12,7 +12,7 @@ $ npm i loopback-paginator --save
 
 Add `"../node_modules/loopback-paginator"` to the `mixins` property of your `server/model-config.json`.
 
-```json
+```javascript
 {
   "_meta": {
     "mixins": [
@@ -28,7 +28,7 @@ Add `"../node_modules/loopback-paginator"` to the `mixins` property of your `ser
 
 To use with your models add `Paginator` to `mixins` in your model config and specify a `limit`. `limit` defines the number of items per page.
 
-```json
+```javascript
 {
   "name": "Model",
   "properties": {
@@ -50,7 +50,7 @@ When Paginator is added to a model, Model.find() will return an object with `dat
 
 `/GET https://example.com/api/items?page=3`
 
-```json
+```javascript
 {
   "data": [
     {
