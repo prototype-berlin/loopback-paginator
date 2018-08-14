@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "transpile": "babel src --out-dir lib",
-    "release": "npm run transpile && np"
+    "release": "rm -rf lib && npm run transpile && np"
   },
   "author": "Manuel Heidrich",
   "license": "ISC",
