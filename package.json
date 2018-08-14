@@ -8,7 +8,7 @@
     "release": "rm -rf lib && npm run transpile && np"
   },
   "author": "Manuel Heidrich",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-plugin-transform-async-to-generator": "6.24.1",
