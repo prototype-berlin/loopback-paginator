@@ -17,7 +17,7 @@ With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/) [mixin
   "_meta": {
     "mixins": [
       "loopback/common/mixins",
-      "../node_modules/loopback-paginator",
+      "../node_modules/loopback-paginator/lib",
       "../common/mixins"
     ]
   }
