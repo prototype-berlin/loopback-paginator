@@ -31,11 +31,11 @@ export default (Model, options = {}) => {
     }
 
     if (nextPage <= totalPageCount) {
-      context.result._meta.nextPage = nextPage;
+      context.result.meta.nextPage = nextPage;
     }
 
     if (previousPage > 0) {
-      context.result._meta.previousPage = previousPage;
+      context.result.meta.previousPage = previousPage;
     }
   });
 
