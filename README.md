@@ -10,7 +10,7 @@ $ npm i loopback-paginator --save
 
 ## Server Config
 
-Add `"../node_modules/loopback-paginator"` to the `mixins` property of your `server/model-config.json`.
+With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/) [mixinSources](https://github.com/strongloop/loopback-boot/pull/131) have been implemented in a way which allows for loading this mixin without changes to the server.js file previously required. Just add `"../node_modules/loopback-paginator"` to the `mixins` property of your `server/model-config.json`.
 
 ```javascript
 {
