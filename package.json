@@ -8,6 +8,18 @@
     "release": "rm -rf lib && npm run transpile && np"
   },
   "author": "Manuel Heidrich",
+  "contributors": [
+    {
+      "name": "Manuel Heidrich",
+      "email": "mail@manuel-heidrich.com",
+      "url": "https://www.manuel-heidrich.com"
+    },
+    {
+      "name": "prototype.berlin GmbH",
+      "email": "info@prototype.berlin",
+      "url": "https://www.prototype.berlin"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type" : "git",
