@@ -8,7 +8,8 @@
     "release": "rm -rf lib && npm run transpile && np"
   },
   "author": "Manuel Heidrich",
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Manuel Heidrich",
       "email": "mail@manuel-heidrich.com",
       "url": "https://www.manuel-heidrich.com"
@@ -40,7 +41,8 @@
     "plugins": [
       "transform-async-to-generator",
       [
-        "transform-runtime", {
+        "transform-runtime",
+        {
           "polyfill": false,
           "regenerator": true
         }
