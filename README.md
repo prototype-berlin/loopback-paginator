@@ -67,7 +67,7 @@ When Paginator is added to a model, Model.find() will return an object with `dat
     ...
 
   ],
-  "_meta": {
+  "meta": {
     "totalItemCount": 95, // total number of items
     "totalPageCount": 10, // total number of all pages
     "itemsPerPage": 10,   // numberof items per page

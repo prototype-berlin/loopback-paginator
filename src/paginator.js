@@ -22,7 +22,7 @@ export default (Model, options = {}) => {
 
     context.result = {
       data: context.result,
-      _meta: {
+      meta: {
         totalItemCount: totalItemCount,
         totalPageCount: totalPageCount,
         itemsPerPage: options.limit,
