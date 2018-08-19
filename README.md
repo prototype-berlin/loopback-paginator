@@ -8,7 +8,9 @@ Paginator adds an easy to use pagination to any of your models. See the [example
 $ npm i loopback-paginator --save
 ```
 
-## Server Config
+## Config
+
+### Server Config
 
 With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/) [mixinSources](https://github.com/strongloop/loopback-boot/pull/131) have been implemented in a way which allows for loading this mixin without changes to the server.js file previously required. Just add `"../node_modules/loopback-paginator"` to the `mixins` property of your `server/model-config.json`.
 
@@ -23,10 +25,9 @@ With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/) [mixin
   }
 }
 ```
+### Model Config
 
-## Model Config
-
-To use with your models add `Paginator` to `mixins` in your model config and specify a `limit`. `limit` defines the number of items per page.
+To use with your models just add `Paginator: true` to `mixins` in your model config and the default options will be used:
 
 ```javascript
 {
@@ -37,9 +38,28 @@ To use with your models add `Paginator` to `mixins` in your model config and spe
     }
   },
   "mixins": {
+    "Paginator": true
+  }
+
+  ...
+
+  // you can also overide the default values:
+  "mixins": {
     "Paginator": {
-      "limit": 10
+      "limit": 5    // items per page, default: 10
     }
+  }
+}
+```
+
+### Global Config
+
+It is also possible to configure the mixin globally in your `config.json`. Just add `paginator` and use the same options as with the model above:
+
+```javascript
+{
+  "paginator": {
+    "limit": 20    // items per page, default: 10
   }
 }
 ```
@@ -85,3 +105,8 @@ When Paginator is added to a model, Model.find() will return an object with `dat
 ## License
 
 [MIT](LICENSE)
+
+## Changelog
+
+### v0.9.6
+- Add global config

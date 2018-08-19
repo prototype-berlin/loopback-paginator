@@ -4,8 +4,20 @@ const debug = _debug();
 const warn = _debug(); // create a namespaced warning
 warn.log = console.warn.bind(console); // eslint-disable-line no-console
 
-export default (Model, options = {}) => {
-  debug('Pagintor mixin for Model %s', Model.modelName);
+const DEFAULT_LIMIT = 10;
+
+export default async (Model, options = {}) => {
+  debug('Pagintor mixin for model %s', Model.modelName);
+
+  Model.getApp((error, app) => {
+    if (error) {
+      debug(`Error getting app: ${error}`);
+    }
+
+    let globalOptions = app.get('paginator');
+
+    options.limit = options.limit || globalOptions.limit || DEFAULT_LIMIT;
+  });
 
   Model.beforeRemote('find', async (context, next) => {
     const page = context.req.query.page || 1;
