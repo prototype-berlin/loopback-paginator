@@ -48,5 +48,10 @@
         }
       ]
     ]
-  }
+  },
+  "keywords": [
+    "loopback",
+    "mixin",
+    "pagination"
+  ]
 }
