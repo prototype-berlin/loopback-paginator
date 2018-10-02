@@ -13,9 +13,9 @@ export default async (Model, options = {}) => {
     if (error) {
       debug(`Error getting app: ${error}`);
     }
-
-    let globalOptions = (app.get('paginator')) && (app.get('paginator')).limit ? (app.get('paginator')).limit : DEFAULT_LIMIT;
-    options.limit = options.limit || globalOptions;
+    
+    let globalOptions = app.get('paginator') || {};
+    options.limit = options.limit || globalOptions.limit || DEFAULT_LIMIT;
   });
 
   Model.beforeRemote('find', async (context, next) => {
