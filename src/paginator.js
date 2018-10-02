@@ -13,9 +13,8 @@ export default async (Model, options = {}) => {
     if (error) {
       debug(`Error getting app: ${error}`);
     }
-
-    let globalOptions = app.get('paginator');
-
+    
+    let globalOptions = app.get('paginator') || {};
     options.limit = options.limit || globalOptions.limit || DEFAULT_LIMIT;
   });
 
