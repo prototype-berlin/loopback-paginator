@@ -51,6 +51,10 @@ export default async (Model, options = {}) => {
   });
 
   function modifyFilter(filter, page) {
+    if (filter && filter.hasOwnProperty('limit')) {
+      options.limit = filter.limit; 
+    }
+    
     const skip = (page - 1) * options.limit;
     const limit = options.limit;
 
