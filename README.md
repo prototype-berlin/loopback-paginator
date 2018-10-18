@@ -46,11 +46,19 @@ To use with your models just add `Paginator: true` to `mixins` in your model con
   // you can also overide the default values:
   "mixins": {
     "Paginator": {
-      "limit": 5    // items per page, default: 10
+      "limit": 5,         // items per page, default: 10
+      "maxLimit": 60,     // max items per page, default: 100
+      "noMaxLimit": true  // only use this, if you know what you are doing!
     }
   }
 }
 ```
+
+#### limit and maxLimit
+
+* `limit` is the default limit to be used for this model
+* `maxLimit` is the default maximum number of items per page for this model. As you can override the default limit using the [LoopBack limit filter](https://loopback.io/doc/en/lb3/Limit-filter.html) it might come in handy to set a maxLimit to prevent your API from being abused. The default is `100`.
+* `noMaxLimit` set to `true` will deactivate the `maxLimit`. Be careful!
 
 ### Global Config
 
@@ -59,10 +67,18 @@ It is also possible to configure the mixin globally in your `config.json`. Just 
 ```javascript
 {
   "paginator": {
-    "limit": 20    // items per page, default: 10
+    "limit": 20,       // items per page, default: 10
+    "maxLimit": 300,   // max items per page, default: 100
+    "noMaxLimit": true // only use this, if you know what you are doing!
   }
 }
 ```
+
+#### limit and maxLimit
+
+* `limit` is the default limit to be used globally
+* `maxLimit` is the default maximum number of items per page globally. As you can override the default limit using the [LoopBack limit filter](https://loopback.io/doc/en/lb3/Limit-filter.html) it might come in handy to set a maxLimit to prevent your API from being abused. The global default is `100`.
+* `noMaxLimit` set to `true` will deactivate the `maxLimit`. Be careful!
 
 ## Usage
 
@@ -100,13 +116,18 @@ When Paginator is added to a model, Model.find() will return an object with `dat
 
 ## ToDo
 
-- [ ] allow to override limit with an URL parameter
+- [x] allow to override limit with an URL parameter
 
 ## License
 
 [MIT](LICENSE)
 
 ## Changelog
+
+### v1.0.0
+- Allow to override limit with the LoopBack limit filter
+- Add `maxLimit` option
+- Add `noMaxLimit` option
 
 ### v0.9.6
 - Add global config
