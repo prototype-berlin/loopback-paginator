@@ -5,6 +5,8 @@ const warn = _debug(); // create a namespaced warning
 warn.log = console.warn.bind(console); // eslint-disable-line no-console
 
 const DEFAULT_LIMIT = 10;
+const DEFAULT_MAX_LIMIT = 100;
+const DEFAUL_NO_MAX_LIMIT = false;
 
 export default async (Model, options = {}) => {
   debug('Pagintor mixin for model %s', Model.modelName);
@@ -16,17 +18,20 @@ export default async (Model, options = {}) => {
     
     let globalOptions = app.get('paginator') || {};
     options.limit = options.limit || globalOptions.limit || DEFAULT_LIMIT;
+    options.maxLimit = options.maxLimit || globalOptions.maxLimit || DEFAULT_MAX_LIMIT;
+    options.noMaxLimit = options.noMaxLimit || globalOptions.noMaxLimit || DEFAUL_NO_MAX_LIMIT;
   });
 
-  Model.beforeRemote('find', async (context, next) => {
+  Model.beforeRemote('find', async (context) => {
     const page = context.req.query.page || 1;
     context.args.filter = modifyFilter(context.args.filter, page);
   });
 
-  Model.afterRemote('find', async (context, next) => {
+  Model.afterRemote('find', async (context) => {
+    const limit = getLimit(context.args.filter);
     const where = context.args.filter.where || null;
     const totalItemCount = await Model.count(where);
-    const totalPageCount = Math.ceil(totalItemCount / options.limit);
+    const totalPageCount = Math.ceil(totalItemCount / limit);
     const currentPage = parseInt(context.req.query.page) || 1;
     const previousPage = currentPage - 1;
     const nextPage = currentPage + 1;
@@ -36,7 +41,7 @@ export default async (Model, options = {}) => {
       meta: {
         totalItemCount: totalItemCount,
         totalPageCount: totalPageCount,
-        itemsPerPage: options.limit,
+        itemsPerPage: limit,
         currentPage: currentPage,
       }
     }
@@ -51,8 +56,8 @@ export default async (Model, options = {}) => {
   });
 
   function modifyFilter(filter, page) {
-    const skip = (page - 1) * options.limit;
-    const limit = options.limit;
+    const limit = getLimit(filter);
+    const skip = (page - 1) * limit;
 
     if (!filter) {
       filter = {
@@ -66,6 +71,20 @@ export default async (Model, options = {}) => {
     filter.limit = limit;
 
     return filter;
+  }
+
+  function getLimit(filter) {
+    if (filter && filter.limit) {
+      let limit = parseInt(filter.limit);
+
+      if (options.maxLimit && !options.noMaxLimit) {
+        limit = limit > options.maxLimit ? options.maxLimit : limit;
+      }
+
+      return limit;
+    }
+  
+    return options.limit;
   }
 
 };
