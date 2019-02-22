@@ -26,24 +26,21 @@
     "url": "https://github.com/prototype-berlin/loopback-paginator"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-plugin-transform-async-to-generator": "6.24.1",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-preset-es2015": "6.24.1"
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.3.3",
+    "@babel/plugin-transform-async-to-generator": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "@babel/preset-env": "7.3.1"
   },
   "dependencies": {
     "debug": "3.1.0"
   },
   "babel": {
-    "presets": [
-      "es2015"
-    ],
     "plugins": [
-      "transform-async-to-generator",
+      "@babel/transform-async-to-generator",
       [
-        "transform-runtime",
+        "@babel/transform-runtime",
         {
-          "polyfill": false,
           "regenerator": true
         }
       ]
