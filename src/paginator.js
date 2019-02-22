@@ -23,13 +23,14 @@ export default async (Model, options = {}) => {
   });
 
   Model.beforeRemote('find', async (context) => {
-    const page = context.req.query.page || 1;
-    context.args.filter = modifyFilter(context.args.filter, page);
+    if (!context.req.query.page) { return; }
+
+    context.args.filter = modifyFilter(context.args.filter, context.req.query.page);
   });
 
   Model.afterRemote('find', async (context) => {
     if (!context.req.query.page) { return; }
-    
+
     const limit = getLimit(context.args.filter);
     const where = context.args.filter.where || null;
     const totalItemCount = await Model.count(where);
