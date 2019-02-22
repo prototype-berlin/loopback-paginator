@@ -28,6 +28,8 @@ export default async (Model, options = {}) => {
   });
 
   Model.afterRemote('find', async (context) => {
+    if (!context.req.query.page) { return; }
+    
     const limit = getLimit(context.args.filter);
     const where = context.args.filter.where || null;
     const totalItemCount = await Model.count(where);

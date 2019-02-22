@@ -82,7 +82,7 @@ It is also possible to configure the mixin globally in your `config.json`. Just 
 
 ## Usage
 
-When Paginator is added to a model, Model.find() will return an object with `data` and `meta`. `data` is an array with the queried items, limited to the number you defined in the mixin options (see [Model Config](#model-config)). `meta` contains information about the requested page (see example below). You can specify the page as an URL parameter (e.g. `?page=3`). If no page is specified it defaults to 1.
+When Paginator is added to a model and the `page` query parameter is present (e.g. `?page=1`), Model.find() will return an object with `data` and `meta`. `data` is an array with the queried items, limited to the number you defined in the mixin options (see [Model Config](#model-config)). `meta` contains information about the requested page (see example below). You can specify the page as a query parameter (e.g. `?page=3`). ~~If no page is specified it defaults to 1~~ (deprecated in versions >= 2.0.0).
 
 `/GET https://example.com/api/items?page=3`
 
@@ -123,6 +123,9 @@ When Paginator is added to a model, Model.find() will return an object with `dat
 [MIT](LICENSE)
 
 ## Changelog
+
+### v2.0.0
+- Breaking change: omitting the page parameter no longer defaults to page=1, it now returns unpaginated results
 
 ### v1.0.0
 - Allow to override limit with the LoopBack limit filter
