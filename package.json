@@ -20,6 +20,9 @@
       "url": "https://www.prototype.berlin"
     }
   ],
+  "engines": {
+    "node": ">=8"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -34,17 +37,6 @@
   },
   "dependencies": {
     "debug": "3.1.0"
-  },
-  "babel": {
-    "plugins": [
-      "@babel/transform-async-to-generator",
-      [
-        "@babel/transform-runtime",
-        {
-          "regenerator": true
-        }
-      ]
-    ]
   },
   "keywords": [
     "loopback",

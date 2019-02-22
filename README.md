@@ -125,6 +125,7 @@ When Paginator is added to a model and the `page` query parameter is present (e.
 ## Changelog
 
 ### v2.0.0
+- Breaking change: node >=8.0.0 is required!
 - Breaking change: omitting the page parameter no longer defaults to page=1, it now returns unpaginated results
 
 ### v1.0.0
