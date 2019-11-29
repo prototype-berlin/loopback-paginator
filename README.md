@@ -19,7 +19,7 @@ With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/) [mixin
   "_meta": {
     "mixins": [
       "loopback/common/mixins",
-      "../node_modules/loopback-paginator/lib",
+      "../node_modules/loopback-paginator",
       "../common/mixins"
     ]
   }
@@ -123,6 +123,10 @@ When Paginator is added to a model and the `page` query parameter is present (e.
 [MIT](LICENSE)
 
 ## Changelog
+
+### v3.0.0
+- Breaking change: Add the mixin in `server/model-config.json` like this: `"../node_modules/loopback-paginator"`, without the former `/lib` at the end
+- Remove Babel dependencies
 
 ### v2.0.0
 - Breaking change: node >=8.0.0 is required!
