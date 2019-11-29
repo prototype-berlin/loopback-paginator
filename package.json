@@ -2,10 +2,9 @@
   "name": "loopback-paginator",
   "version": "2.0.0",
   "description": "Pagination mixin for LoopBack.",
-  "main": "lib/index.js",
+  "main": "paginator.js",
   "scripts": {
-    "transpile": "babel src --out-dir lib",
-    "release": "rm -rf lib && npm run transpile && np"
+    "release": "np"
   },
   "author": "Manuel Heidrich",
   "contributors": [
@@ -28,15 +27,9 @@
     "type": "git",
     "url": "https://github.com/prototype-berlin/loopback-paginator"
   },
-  "devDependencies": {
-    "@babel/cli": "7.2.3",
-    "@babel/core": "7.3.3",
-    "@babel/plugin-transform-async-to-generator": "7.2.0",
-    "@babel/plugin-transform-runtime": "7.2.0",
-    "@babel/preset-env": "7.3.1"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "debug": "3.1.0"
+    "debug": "4.1.1"
   },
   "keywords": [
     "loopback",

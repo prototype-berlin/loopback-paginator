@@ -1,14 +1,10 @@
-import _debug from './debug';
-
-const debug = _debug();
-const warn = _debug(); // create a namespaced warning
-warn.log = console.warn.bind(console); // eslint-disable-line no-console
+const debug = require('debug')('loopback:mixins:paginator');
 
 const DEFAULT_LIMIT = 10;
 const DEFAULT_MAX_LIMIT = 100;
 const DEFAUL_NO_MAX_LIMIT = false;
 
-export default async (Model, options = {}) => {
+module.exports = function (Model, options = {}) {
   debug('Pagintor mixin for model %s', Model.modelName);
 
   Model.getApp((error, app) => {
@@ -89,7 +85,4 @@ export default async (Model, options = {}) => {
   
     return options.limit;
   }
-
-};
-
-module.exports = exports.default;
+}
