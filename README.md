@@ -8,6 +8,10 @@ Paginator adds an easy to use pagination to any of your models. See the [example
 $ npm i loopback-paginator --save
 ```
 
+## Demo application
+
+A woring demo application is available [here](https://github.com/prototype-berlin/loopback-paginator-demo).
+
 ## Config
 
 ### Server Config
